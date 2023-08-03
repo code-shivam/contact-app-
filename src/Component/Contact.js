@@ -2,27 +2,20 @@ import React, { useState } from "react";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
 
-function Contact({
-  contact,
-  setContact,
-  name,
-  setName,
-  phone,
-  setPhone,
-  email,
-  setEmail,
- 
-}) {
-  const navigate = useNavigate();
+function Contact({ contact, setContact}) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
+  const navigate = useNavigate();
   const Sumbit = (e) => {
     e.preventDefault();
     if (name === "") {
-      alert("please enter a vaild name ");
+      alert("please enter a valid name ");
     } else if (email === "") {
-      alert("please enter a vaiod email");
+      alert("please enter a valid email");
     } else if (phone.length < 10) {
-      alert("please enter a vaild mobile no ");
+      alert("please enter a valid mobile no ");
     } else {
       setContact([
         ...contact,
@@ -31,6 +24,7 @@ function Contact({
           email: email,
           phone: phone,
           id: contact.length + 1,
+      
         },
       ]);
 
@@ -50,7 +44,7 @@ function Contact({
         Home
       </button>
       <div>
-        <form className="form">
+        <div className="form">
           <p style={{ fontSize: "30px", fontWeight: "bold" }}>
             Add New Contact
           </p>
@@ -79,7 +73,7 @@ function Contact({
           <button className="bigbtn" onClick={(e) => Sumbit(e)}>
             Save Contact
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
